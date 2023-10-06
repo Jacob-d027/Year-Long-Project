@@ -9,13 +9,28 @@ import UIKit
 
 class DetailedPostViewController: UIViewController {
 
+    @IBOutlet weak var imageDisplay: UIImageView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var postDescriptionLabel: UILabel!
+    
+    private var post: Posts?
+    
+    init?(post: Posts, coder: NSCoder) {
+        super.init(coder: coder)
+        self.post = post
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-
+ 
+   
     /*
     // MARK: - Navigation
 

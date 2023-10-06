@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct Posts {
+    var date: String
+    var imageName: String
+    var postDescription: String
+}
