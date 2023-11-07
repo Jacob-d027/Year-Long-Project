@@ -31,6 +31,7 @@ class PostListViewController: UIViewController {
 class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var commentsLabel: UILabel!
     
 }
 
@@ -43,8 +44,9 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostTableViewCell else {return UITableViewCell()}
         let post = posts[indexPath.row]
         cell.dateLabel.text = post.date
-        cell.descriptionLabel.text = post.postDescription
-    
+        cell.descriptionLabel.text = post.title
+        cell.commentsLabel.text = String(post.comments.count)
+        
         return cell
     }
 }

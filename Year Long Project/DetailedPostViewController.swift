@@ -12,6 +12,7 @@ class DetailedPostViewController: UIViewController {
     @IBOutlet weak var imageDisplay: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var postDescriptionLabel: UILabel!
+    @IBOutlet weak var commentsLabel: UILabel!
     
     var post: Posts?
     
@@ -36,7 +37,8 @@ class DetailedPostViewController: UIViewController {
             imageDisplay.image = image
         }
         dateLabel.text = post?.date
-        postDescriptionLabel.text = post?.postDescription
+        postDescriptionLabel.text = post?.bodyText
+        commentsLabel.text = post?.comments
     }
    
     /*
