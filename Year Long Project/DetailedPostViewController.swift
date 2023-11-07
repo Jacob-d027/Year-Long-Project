@@ -13,7 +13,7 @@ class DetailedPostViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var postDescriptionLabel: UILabel!
     
-    private var post: Posts?
+    var post: Posts?
     
     init?(post: Posts, coder: NSCoder) {
         super.init(coder: coder)
@@ -27,9 +27,17 @@ class DetailedPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        updateView()
         // Do any additional setup after loading the view.
     }
  
+    func updateView() {
+        if let image = UIImage(named: post?.imageName ?? "") {
+            imageDisplay.image = image
+        }
+        dateLabel.text = post?.date
+        postDescriptionLabel.text = post?.postDescription
+    }
    
     /*
     // MARK: - Navigation

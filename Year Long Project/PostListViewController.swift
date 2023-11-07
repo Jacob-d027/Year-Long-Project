@@ -9,18 +9,23 @@ import UIKit
 
 class PostListViewController: UIViewController {
     
-    var posts: [Posts] = [Posts(date: "10/04/23", imageName: "pixel 8 Products.jpeg", postDescription: "Pretty excited to hear about the annoucement for the Google Pixel 8s. Can't wait to see these phones sold in stores!")]
-
+    @IBOutlet weak var postTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        
         // Do any additional setup after loading the view.
     }
-    @IBSegueAction func prepareForDetailedViewSegue(_ coder: NSCoder) -> DetailedPostViewController? {
+    
+    
+    @IBSegueAction func showDetailView(_ coder: NSCoder, sender: Any?) -> DetailedPostViewController? {
+        guard let selectedRow = postTableView.indexPathForSelectedRow else { return nil }
+        let selectedPost = posts[selectedRow.row]
         
-    }
-
+        postTableView.deselectRow(at: selectedRow, animated: true)
+        return DetailedPostViewController(post: selectedPost, coder: coder)
+        }
 }
 
 class PostTableViewCell: UITableViewCell {
@@ -29,7 +34,7 @@ class PostTableViewCell: UITableViewCell {
     
 }
 
-extension PostListViewController:  UITableViewDelegate, UITableViewDataSource {
+extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
@@ -37,14 +42,9 @@ extension PostListViewController:  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostTableViewCell else {return UITableViewCell()}
         let post = posts[indexPath.row]
-        
         cell.dateLabel.text = post.date
         cell.descriptionLabel.text = post.postDescription
-        
+    
         return cell
-    }
-   
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     }
 }
