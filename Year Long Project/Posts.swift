@@ -14,7 +14,7 @@ struct Posts {
     var title: String
     var user: String
     var comments: String
-    
+    // Instead change comments to it's own type for a post and also create a User model to "store" user info and properties
 }
 
 var posts: [Posts] = [
